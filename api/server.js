@@ -1,17 +1,23 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const port = 4000;
 
-exports.start = async () => {
-  app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Content-Type", "application/json");
+  next();
+});
+app.use(bodyParser());
+app.get("/", function (req, res) {
+  res.send("Hello World!");
+});
+require("./routes/routes.js")(app);
 
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-  }); /*
-    await server.register([connectors, auth, routes, { plugin: Blipp }]);
-    await server.start();
-    console.log(`Server running at: ${server.info.uri}`); // eslint-disable-line no-console
-    return server;*/
+exports.start = async () => {
+  app.listen(port, function () {
+    console.log(`Example app listening on port ${port}`);
+  });
 };
