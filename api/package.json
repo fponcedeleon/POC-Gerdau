@@ -14,7 +14,8 @@
     }
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --write --ignore-unknown",
+    "*.{js,css,md}": "prettier --write"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,8 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
     "prettier": "2.1.2"
   }
 }
