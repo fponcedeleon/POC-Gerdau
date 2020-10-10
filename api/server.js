@@ -7,11 +7,9 @@ exports.start = async () => {
     res.send("Hello World!");
   });
 
-                app.listen(port       , () => {
-                    console.log(`Example app listening at http://localhost:${port}`);
-
-    
-}); /*
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+  }); /*
     await server.register([connectors, auth, routes, { plugin: Blipp }]);
     await server.start();
     console.log(`Server running at: ${server.info.uri}`); // eslint-disable-line no-console
