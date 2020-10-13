@@ -21,7 +21,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mssql": "^6.2.3"
+    "mssql": "^6.2.3",
+    "tedious": "^9.2.1"
   },
   "devDependencies": {
     "husky": "^4.3.0",
