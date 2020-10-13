@@ -5,18 +5,18 @@ var connection;
 
 function connect(executeStatement) {
   var config = {
-    server: "localhost", //update me
+    server: `${process.env.server}`, //update me
     authentication: {
       type: "default",
       options: {
-        userName: "GERDAU", //update me
-        password: "GERDAU", //update me
+        userName: `${process.env.user}`, //update me
+        password: `${process.env.password}`, //update me
       },
     },
     options: {
       // If you are on Microsoft Azure, you need encryption:
       encrypt: false,
-      database: "POCGERDAU", //update me
+      database: `${process.env.database}`, //update me
     },
   };
   connection = new Connection(config);
