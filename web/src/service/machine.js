@@ -1,15 +1,17 @@
 import { post, get } from "../api/api";
 
-const baseUrl = process.env.NODE_URL;
+const baseUrl = 'http://localhost:4000';
+const machineURL = 'api/machine';
 
 export const createNewMachine = async ({
-  name,
-  date
+  nombre,
+  instalada,
+  ultimoMantenimiento,
 }) => {
-  const machineURL = process.env.MACHINE_URL;
   const { data: machine, error } = await post(`${baseUrl}/${machineURL}`, {
-    name,
-    date
+    nombre,
+    instalada,
+    ultimoMantenimiento,
   });
   if (error) {
     if (error.status === 409) {
@@ -22,9 +24,8 @@ export const createNewMachine = async ({
 };
 
 export const getAllMachines = async () => {
-  const machineURL = process.env.MACHINE_URL;
   const { data: machines, error } = await get(`${baseUrl}/${machineURL}`);
-
+  return [{nombre: 'fede', instalado: true, ultimoMantenimiento: '2020-10-10'}]
   if (error) {
     throw error;
   }

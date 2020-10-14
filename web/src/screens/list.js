@@ -74,21 +74,7 @@ const Table = ({ columns, data }) => {
   )
 }
 
-const App = () => {
-
-  const [data, setData] = useState({});
-  const cleanData = [{firstName:'fede', lastName:'fede'}];
-  
-  // useEffect(() => {
-  //   // getAllMachines().then(res => {
-  //   //   console.log(res);
-  //   //   setData(res);
-  //   // }).catch(err => {
-  //   //   console.log(err);
-  //   // })
-  //   setData([{firstName:'fede', lastName:'fede'}])
-  //   console.log(data);
-  // }, [])
+const App = ({data}) => {
 
   const columns = React.useMemo(
     () => [
@@ -96,12 +82,16 @@ const App = () => {
         Header: 'Name',
         columns: [
           {
-            Header: 'First Name',
-            accessor: 'firstName',
+            Header: 'Name',
+            accessor: 'nombre',
           },
           {
-            Header: 'Last Name',
-            accessor: 'lastName',
+            Header: 'Installed',
+            accessor: 'instalado',
+          },
+          {
+            Header: 'Last Maintenance Date',
+            accessor: 'ultimoMantenimiento',
           },
         ],
       },
@@ -111,8 +101,35 @@ const App = () => {
 
   return (
   <Styles>
-    <Table columns={columns} data={cleanData} />
+    <Table columns={columns} data={data} />
   </Styles>)
 }
 
-export default App;
+const Foo = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+      getAllMachines().then(res => {
+        console.log(res);
+        setData(res);
+      }).catch(err => {
+        console.log(err);
+        // const dat = [{nombre: 'fede', instalado: 'true', ultimoMantenimiento: '2020-10-10'}];
+        // setData(dat);
+      })
+    }, [])
+  
+  const getApp = () => {
+    if (data.length) {
+      return <App data={data} />;
+    }
+    return <div>No data returned</div>
+  }
+
+  return (
+    <div>
+      {getApp()}
+    </div>
+  )
+}
+
+export default Foo;

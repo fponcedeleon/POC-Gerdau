@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './screens/home';
 import Machine from './screens/newMachine';
 import List from './screens/list';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
   return (

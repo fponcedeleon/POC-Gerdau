@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import styled from 'styled-components';
+
+const Styles = styled.div`
+  max-width: 100% !important;
+`
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -26,6 +31,7 @@ function Navbar() {
 
   return (
     <>
+      <Styles>
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
@@ -62,6 +68,7 @@ function Navbar() {
           </ul>
         </div>
       </nav>
+      </Styles>
     </>
   );
 }

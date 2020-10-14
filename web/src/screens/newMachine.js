@@ -2,8 +2,10 @@ import React from 'react';
 import { useForm, useField, splitFormProps } from "react-form";
 import { createNewMachine } from "../service/machine.js";
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import Toast from 'react-bootstrap/Toast';
+import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 
 
 const validateName = (value) => {
@@ -54,33 +56,45 @@ const MyForm = () => {
   });
 
   return (
-    <Container className="p-3">
-      <Jumbotron>
-        <h1 className="header">Welcome To React-Bootstrap</h1>
-        <Form>
-          <div>
-            <label>
-              Name: <InputField field="name" validate={validateName} />
-            </label>
-          </div>
+    <Container fluid>
+      <Row className="justify-content-md-center">
+        <Col xs={{span: 4}} >
+          <h4>Please fill in the following information</h4>
+        </Col>
+      </Row>
+      <Row className="justify-content-md-center">
+        <Col xs={{ span: 4 }}>
+          <Form>
+            <div>
+              <label>
+                Name: <InputField field="nombre" validate={validateName} />
+              </label>
+            </div>
 
-          <div>
-            <label>
-              Last Maintenance Date: <InputField type="date" field="date" />
-            </label>
-          </div>
+            <div>
+              <label>
+                Last Maintenance Date: <InputField type="date" field="ultimoMantenimiento" />
+              </label>
+            </div>
 
-          <div>
-            <button type="submit" disabled={!canSubmit}>
-              Submit
-          </button>
-          </div>
+            <div>
+              <label>
+                Installed? <InputField type="checkbox" field="instalada" />
+              </label>
+            </div>
 
-          <div>
-            <em>{isSubmitting ? "Submitting..." : null}</em>
-          </div>
-        </Form>
-      </Jumbotron>
+            <div style={{textAlign: 'center'}}>
+              <Button type="submit" disabled={!canSubmit}>
+                Submit
+              </Button>
+            </div>
+
+            <div>
+              <em>{isSubmitting ? "Submitting..." : null}</em>
+            </div>
+          </Form>
+        </Col>
+      </Row>
     </Container>
   );
 }
