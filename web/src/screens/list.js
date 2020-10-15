@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { useTable } from 'react-table'
-
+import { Container, Row, Col } from 'react-bootstrap';
 import { getAllMachines } from '../service/machine';
 
 const Styles = styled.div`
@@ -79,7 +79,7 @@ const App = ({data}) => {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'Name',
+        Header: 'Machines',
         columns: [
           {
             Header: 'Name',
@@ -101,7 +101,11 @@ const App = ({data}) => {
 
   return (
   <Styles>
-    <Table columns={columns} data={data} />
+    <Container fluid>
+      <Row className="justify-content-md-center" >
+        <Table xs={{span: 4}} columns={columns} data={data} />
+      </Row>
+    </Container>
   </Styles>)
 }
 
@@ -113,8 +117,6 @@ const Foo = () => {
         setData(res);
       }).catch(err => {
         console.log(err);
-        // const dat = [{nombre: 'fede', instalado: 'true', ultimoMantenimiento: '2020-10-10'}];
-        // setData(dat);
       })
     }, [])
   
@@ -122,7 +124,15 @@ const Foo = () => {
     if (data.length) {
       return <App data={data} />;
     }
-    return <div>No data returned</div>
+    return (
+      <Styles>
+      <Container fluid>
+        <Row className="justify-content-md-center" >
+          <Col xs={{ span: 2 }}>No data returned</Col>
+        </Row>
+      </Container>
+      </Styles>
+    )
   }
 
   return (
