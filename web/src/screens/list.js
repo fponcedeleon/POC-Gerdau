@@ -87,7 +87,7 @@ const App = ({data}) => {
           },
           {
             Header: 'Installed',
-            accessor: 'instalado',
+            accessor: 'instalada',
           },
           {
             Header: 'Last Maintenance Date',
@@ -117,6 +117,8 @@ const Foo = () => {
         setData(res);
       }).catch(err => {
         console.log(err);
+        const dat  = [{nombre: 'f', instalado: '2020/10/10', ultimoMantenimiento: '2020/10/10'}]
+        setData(dat);
       })
     }, [])
   
