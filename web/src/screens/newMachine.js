@@ -85,7 +85,7 @@ const MyForm = () => {
 
             <div>
               <label>
-                Installed? <InputField type="checkbox" field="instalada" />
+                Installed Date <InputField type="date" field="instalada" />
               </label>
             </div>
 
