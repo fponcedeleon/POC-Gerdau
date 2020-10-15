@@ -66,21 +66,9 @@ exports.setMachine = function (req, res) {
         }
       }
     );
-    var result = "";
-    request.on("row", function (columns) {
-      columns.forEach(function (column) {
-        if (column.value === null) {
-          console.log("NULL");
-        } else {
-          result += column.value + " ";
-        }
-      });
-      console.log(result);
-      result = "";
-    });
-    res.send(request);
-    request.on("done", function (rowCount, more) {
-      console.log(rowCount + " rows returned");
+
+    request.on("doneProc", (rowCount, more, rows) => {
+      res.send(req.body);
     });
     connection.execSql(request);
   });
