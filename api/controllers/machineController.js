@@ -28,7 +28,30 @@ function connect(executeStatement) {
 }
 
 exports.getAllMachines = function (req, res) {
-  res.send("aguante la fafa");
+  console.log(req);
+  connect(() => {
+    request = new Request(`SELECT * FROM machines`, function (err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+
+    _rows = [];
+    request.on("row", (columns) => {
+      var _item = {};
+      // Converting the response row to a JSON formatted object: [property]: value
+      for (var name in columns) {
+        console.log(columns);
+        _item[columns[name].metadata.colName] = columns[name].value;
+      }
+      _rows.push(_item);
+    });
+
+    request.on("doneProc", (rowCount, more, rows) => {
+      res.send(_rows);
+    });
+    connection.execSql(request);
+  });
 };
 
 exports.setMachine = function (req, res) {
