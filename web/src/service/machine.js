@@ -13,6 +13,7 @@ export const createNewMachine = async ({
     instalada,
     ultimoMantenimiento,
   });
+
   if (error) {
     if (error.status === 409) {
       throw new Error("Machine already exists.");
@@ -25,7 +26,6 @@ export const createNewMachine = async ({
 
 export const getAllMachines = async () => {
   const { data: machines, error } = await get(`${baseUrl}/${machineURL}`);
-  return [{nombre: 'fede', instalado: true, ultimoMantenimiento: '2020-10-10'}]
   if (error) {
     throw error;
   }
