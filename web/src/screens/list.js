@@ -117,8 +117,6 @@ const Foo = () => {
         setData(res);
       }).catch(err => {
         console.log(err);
-        const dat  = [{nombre: 'f', instalado: '2020/10/10', ultimoMantenimiento: '2020/10/10'}]
-        setData(dat);
       })
     }, [])
   
