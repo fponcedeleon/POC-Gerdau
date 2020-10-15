@@ -49,7 +49,13 @@ const MyForm = () => {
       // onSubmit (and everything else in React Form)
       // has async support out-of-the-box
       // await sendToFakeServer(values);
-      await createNewMachine(values);
+      createNewMachine(values)
+        .then(() => {
+          alert('Created successfully');
+        })
+        .catch(err => {
+          alert(err);
+        })
 
     },
     debugForm: false
