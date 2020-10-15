@@ -58,7 +58,7 @@ exports.setMachine = function (req, res) {
   console.log(req);
   connect(() => {
     request = new Request(
-      `INSERT INTO machines (Nombre, Instalada, ultimoMantenimiento)
+      `INSERT INTO machines (nombre, instalada, ultimoMantenimiento)
     VALUES ('${req.body.nombre}', '${req.body.instalada}', '${req.body.ultimoMantenimiento}');`,
       function (err) {
         if (err) {
